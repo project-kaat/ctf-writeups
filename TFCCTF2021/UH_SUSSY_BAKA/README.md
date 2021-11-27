@@ -23,7 +23,7 @@ But my keyboard looks identical. This is me pressing the "a" key.
 ## Extraction and parsing
 
 With this established, we can extract the interesting data. I did it with the following command: `tshark -r chall.pcapng -T fields -e usb.capdata > sussy.dat`. Which resulted in a file of such format:
-```[remi@station sussy]$ head sussy.dat 
+```
 0400000000000000
 
 04002b0000000000
@@ -43,7 +43,8 @@ Quickly reading up on the message format, we establish, that:
 * Bytes 3-8 are regular key scancodes
 
 With that, I take a look at out dumped messages.
-```04002b0000000000   # This is an Alt-Tab
+```
+04002b0000000000   # This is an Alt-Tab
 0200170000000000   # This is a capital T
 ```
 Makes sense so far. Now, we just need to a way to parse the messages. We could do it by hand, or write a script, _which is totally, definitely, and absolutely the way I did it during the live event (i swear)_.
