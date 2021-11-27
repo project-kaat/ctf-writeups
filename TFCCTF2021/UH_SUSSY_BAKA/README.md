@@ -47,7 +47,7 @@ With that, I take a look at out dumped messages.
 04002b0000000000   # This is an Alt-Tab
 0200170000000000   # This is a capital T
 ```
-Makes sense so far. Now, we just need to a way to parse the messages. We could do it by hand, or write a script, _which is totally, definitely, and absolutely the way I did it during the live event (i swear)_.
+Makes sense so far. Now, we just need a way to parse the messages. We could do it by hand, or write a script, _which is totally, definitely, and absolutely the way I did it during the live event (i swear)_.
 
 ## Writing a simple parser
 
@@ -154,7 +154,8 @@ class scancodes:
 My code only handles the bare minimum codes and modifiers, but this is enough for the challenge.
 
 Then we run it and get the flag:
-```[remi@station sussy]$ ./kparser.py sussy.dat 
+```
+[remi@station sussy]$ ./kparser.py sussy.dat 
 TFCCTF{w4lt3r_y0u_su55y_b4k4!Why_ar3_y0u_h1d1ng_und3rn34th_my_d3sk}
 ```
 
