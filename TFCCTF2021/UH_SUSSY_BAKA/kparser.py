@@ -99,7 +99,7 @@ with open(sys.argv[1], 'r') as infile:
 string = ""
 for scan in infilebuf:
     d = interpret(scan)
-    if d != None or d == " ":
+    if d != None:
         string += d
 
 print(string)
