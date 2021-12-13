@@ -282,7 +282,7 @@ nite{Eb1c_9aM3R} sure looks like a flag to me!
 
 ## The second part of the challenge
 
-###Welcome Adventurer! There is a portal that teleports you to other levels but unfortunately only wizards can use it. Can you figure out how to make the portal work and get to the hidden level "level0"?
+### Welcome Adventurer! There is a portal that teleports you to other levels but unfortunately only wizards can use it. Can you figure out how to make the portal work and get to the hidden level "level0"?
 
 Let's look at the portal code.
 
@@ -368,7 +368,7 @@ I also changed the _name_ variable back and got rid of my speedhack to make it m
 ## The spawning thing
 
 From this point, I spent a couple of hours just tinkering around with the game files.
-I thought, that I needed me to spawn on the hidden level to get the flag and tried to achieve this in various ways. No matter, how I did it, I was always getting the same "spawned in the wrong place" message. I took a short break and realised one possibility: **there is respawn logic in the GameManager class**.
+I thought, that I needed to spawn on the hidden level to get the flag and tried to achieve this in various ways. No matter, how I did it, I was always getting the same "spawned in the wrong place" message. I took a short break and realised one possibility: **there is spawn logic in the GameManager class, so there might be respawn logic**.
 Feeling like a total idiot, I went back to the files and found this:
 
 ```C#
