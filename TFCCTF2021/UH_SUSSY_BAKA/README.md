@@ -42,7 +42,7 @@ Quickly reading up on the message format, we establish, that:
 * The second byte is reserved
 * Bytes 3-8 are regular key scancodes
 
-With that, I take a look at out dumped messages.
+With that, I take a look at our dumped messages.
 ```
 04002b0000000000   # This is an Alt-Tab
 0200170000000000   # This is a capital T
