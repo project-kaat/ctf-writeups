@@ -97,8 +97,11 @@ Ah, these are the promised monsters.
 
 Judging by the third npc's line,
 and this:
+
 ![hint1](./res/screenshots/monsters_flag1.png)
+
 and even this:
+
 ![hint2](./res/screenshots/monsters_flag2.png)
 
 ... we gotta stop the monsters from following the player, so that they arrange themselves and give us the first flag.
