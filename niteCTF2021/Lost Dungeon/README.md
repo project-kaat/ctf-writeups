@@ -1,4 +1,4 @@
-# Lost Dungeon 1/2
+# Lost Dungeon 1,2
 ## Category: rev
 ### Welcome Adventurer! Legend has it that there lies a dungeon filled with powerful beasts which can be tamed to reveal a secret message. The path to the dungeon is long and arduous. No one who has found the dungeon has returned back as once the beasts get to you they never leave. Can you reach the dungeon and tame the beasts?
 
