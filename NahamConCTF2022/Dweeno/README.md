@@ -32,7 +32,7 @@ This gives me an idea of what I may be looking at. Specifically, _4 XOR gates in
 
 Look _MC74HC86N_ up... And bingo! We have the pinout.
 
-![datasheet screenshot](IC-pinout.png)
+![datasheet screenshot](./res/IC-pinout.png)
 
 Let's take a look at the source now.
 
