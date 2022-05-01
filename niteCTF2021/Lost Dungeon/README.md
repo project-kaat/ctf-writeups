@@ -1,4 +1,4 @@
-# Lost Dungeon 1/2
+# Lost Dungeon 1,2
 ## Category: rev
 ### Welcome Adventurer! Legend has it that there lies a dungeon filled with powerful beasts which can be tamed to reveal a secret message. The path to the dungeon is long and arduous. No one who has found the dungeon has returned back as once the beasts get to you they never leave. Can you reach the dungeon and tame the beasts?
 
@@ -6,7 +6,7 @@ _the decompilation of all game logic can be found under ./res/decompilation_
 
 ## Initial analysis and environment setup
 
-Well, we have a **game hacking** challenge here, as is obvious from the challenge contents. Moreover, the game itself looks to be a _Unity_ game for windows. Ideal environment for me would be a local virtual machine with a GPU attached. Luckily, I already have one of those :P.
+Well, we have a **game hacking** challenge here, as is obvious from the challenge contents. Moreover, the game itself looks to be a _Unity_ game for windows. Ideal environment for me would be a local virtual machine with a GPU attached. Luckily, I already have one of those :P
 
 But first, I decided to poke around the game files. I'm not familiar with Unity engine whatsoever, so I just checked everything and found some ascii strings.
 
