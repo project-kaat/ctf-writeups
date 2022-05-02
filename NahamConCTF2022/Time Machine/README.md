@@ -26,6 +26,7 @@ Running `file` reveals that this binary is made for IBM S/390.
 What's IBM S/390? Well...
 
 ![IBM S/390](https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/IBM_S_390_Multiprise_2003.jpg/220px-IBM_S_390_Multiprise_2003.jpg)
+
 _Alriiighty, that's an interesting start._
 
 ## Static analysis (miserable) attempts
@@ -60,10 +61,10 @@ _woah!_
 
 `stmg`? `lay`? `brasl`?
 
-radare2 does a fantastic job at disassembling some weird obscure architecture but I'm not sure that I can say the same about myself.
+radare2 does a fantastic job at disassembling some weird obscure architecture code but I'm not sure that I can say the same about myself.
 None of these instructions are familiar to me.
 
-So, considering the lack of documentation for this assembly syntax _(seriously, I couldn't find a description of most mnemonics after an hour of searching)_ and the fact that one of the important functions is **3488** instructions long, I'll try my luck with...
+So, considering the lack of documentation for this assembly syntax _(seriously, I couldn't find descriptions of most mnemonics after an hour of searching)_ and the fact that one of the important functions is **3488** instructions long, I'll try my luck with...
 
 ## Dynamic analysis (part 1: suffering through environment preparation)
 
@@ -71,11 +72,11 @@ Now I don't know about you, but I don't own a 20 year old mainframe to run this 
 
 This leaves me with the only option of **emulating the damn cabinet**. 
 
-Searching for info on the topic of emulating an s390x CPU, I found several things:
+Searching for info on the topic of emulating an s390x CPU made several things clear:
 
-1. Debian has support for s390x architecture and provides a netboot ISO
-2. Full-software emulator called "Hercules" exists
-3. QEMU system mode emulation seems to be an option too
+    1. Debian has support for s390x architecture and provides a netboot ISO
+    2. Full-software emulator called "Hercules" exists
+    3. QEMU system mode emulation seems to be an option too
 
 So I tried Hercules. _It was slow._
 
@@ -161,7 +162,7 @@ exit_group(35)                          = ?
 _.security.check_ is the file we're looking for.
 
 ```
-./time-machine
+touch .security.check ; ./time-machine
 System checks complete.
 Found file performing security check...
 Found password:          
@@ -199,7 +200,7 @@ Setting an illegal breakpoint, running the binary, and disabling the said breakp
 
 ## Dynamic analysis (part 3: Finally, reversing the binary)
 
-Our function of interest is called `HELLO_`. 
+Our function of interest is called `HELLO_`. And this fragment contains our memcmp call from earlier. 
 
 ```
    0x000002aa00001646 <+1046>:	lghi	%r4,9
@@ -209,7 +210,7 @@ Our function of interest is called `HELLO_`.
 
 ```
 
-This fragment contains our memcmp call. Examining the value, that goes in r3 we get:
+Examining the value, that goes in r3 we get:
 
 ```
 x/s 0x2aa000023b6
@@ -251,7 +252,7 @@ Hey kiddo... looks like you found it after all!
 no
 ```
 
-Yeah, right.
+_Yeah, right_.
 
 ```
 cob_display(0, 1, 1, 0x2aa1af83ca8Hey kiddo... looks like you found it after all!
@@ -284,9 +285,23 @@ x/s 0x2aa000041b0
 
 Aha! This needs to go in the ".gramps" file, as the file is being read earlier in the code.
 
-The rest of the process is just the same kind of memcmp calls, but the order is mixed up a bit.
+The rest of the process is just the same kind of memcmp calls that reveal our flag in little fragments.
 
 ![more memcmp calls](./res/memcmp_calls.png)
+
+The order of some fragments is mixed up a bit...
+
+```
+   0x000002aa00001972 <+1858>:	la	%r1,21(%r1)
+   0x000002aa00001976 <+1862>:	lghi	%r4,4
+   0x000002aa0000197a <+1866>:	larl	%r3,0x2aa000041d0 <b_33.4929>
+   0x000002aa00001980 <+1872>:	lgr	%r2,%r1
+   0x000002aa00001984 <+1876>:	brasl	%r14,0x2aa00000f08 <memcmp@plt>
+```
+
+...but the `la` (load address) instruction points to the right position by using displacement (21 in this case).
+
+A displacement is simply added to the second operand, which means that it's just a string offset.
 
 Going through all the calls leaves us with this lovely sight:
 
@@ -305,6 +320,8 @@ Hey kiddo... looks like you found it after all!
 You got it! Well done <3
 ```
 
-Whew. I didn't solve this challenge during the live event. I only even noticed it after the CTF was done, but it was still a lot of fun.
+**Nice!**
+
+I didn't solve this challenge during the live event. I only even noticed it after the CTF was done, but it was still a lot of fun.
 
 Also, emulating s390x might not be the intended way, but it was the most interesting one for me :)
