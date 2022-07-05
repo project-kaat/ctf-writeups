@@ -204,6 +204,7 @@ I disassembled the binary in ghidra, using 8051 (found in datasheet) as the proc
 To redirect the execution, we can only flip invividual 1's into 0's. I searched for a fitting instruction manually.
 
 The target I found looks like this:
+
 ![cjne instruction](./res/target.png)
 
 And this is how it will be transformed into an `LJMP 0x0a0c` instruction, redirecting the execution to the empty space
@@ -269,13 +270,14 @@ hijackExecution()
 ```
 
 Nothing beats the feeling of seeing a carefully placed 'A' on the screen :}
+
 ![test exploit output](./res/exploit.png)
 
 ## Get that flag...ROM
 
 Now let's write a real shellcode.
 
-_I could definitely use an 8051 assembler for this task but for some reason, becoming the 8051 assembler myself was too much for to give up_
+_I could definitely use an 8051 assembler for this task but for some reason, becoming the 8051 assembler myself was too much fun to give up_
 
 ```asm
 mov r0, 0                   ; 78 0                  ;init counter
