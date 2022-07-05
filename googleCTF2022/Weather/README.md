@@ -45,7 +45,7 @@ We also find out that the flag is stored in an SFR-mapped ROM, which isn't acces
 
 This was the easy part.
 
-By carefully examining the source code, it becomes apparent that the I2C blacklist isn't enforced correctly.
+By carefully examining the source code, it becomes apparent that the I2C whitelist isn't enforced correctly.
 
 In this function, the port number that the user passes is (incorrectly) checked as a string.
 ```c
