@@ -195,7 +195,7 @@ $ xxd eeprom.bin | tail
 00000fe0: ffff ffff ffff ffff ffff ffff ffff ffff  ................
 00000ff0: ffff ffff ffff ffff ffff ffff ffff ffff  ................
 ```
-Even if we can write shellcode there, we would still have to override the exection flow to get to it somehow.
+Even if we can write shellcode there, we would still have to override the execution flow to get to it somehow.
 
 ## Hijacking the execution
 
